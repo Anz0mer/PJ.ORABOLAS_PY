@@ -1,10 +1,10 @@
-from math import sqrt
+from math import *
 from tkinter import *
 
 def calcular():
     #Inputs para a posição do robô em X e Y
-    robo_x = float(robo_x_entry.get())
-    robo_y = float(robo_y_entry.get())
+    robo_x = float(entry_x.get())
+    robo_y = float(entry_y.get())
 
     #Valores que utilizaremos para o robô
     robo_velocidade = 2.78
@@ -177,40 +177,50 @@ def calcular():
     forca = round(forca, 3)
     print("A força que o robô vai realizar sobre a bola: %.3f\n" % forca)
 
+    # Força de atrito cinetico
+    forca_atrito_cinetico = 0.5 * robo_peso
+    forca_atrito_cinetico = round(forca_atrito_cinetico, 3)
+    print("A força de atrito cinético que o robô vai realizar sobre a bola: %.3f\n" % forca_atrito_cinetico)
+
+    # Força de atrito estatico
+    forca_atrito_estatico = 0.7 * robo_peso
+    forca_atrito_estatico = round(forca_atrito_estatico, 3)
+    print("A força de atrito estático que o robô vai realizar sobre a bola: %.3f\n" % forca_atrito_estatico)
+
     # Trabalho realizado
-    trabalho_realizado = forca * distancia_ate_o_gol
+    trabalho_realizado = (forca + forca_atrito_cinetico - forca_atrito_estatico) * distancia_ate_o_gol
     trabalho_realizado = round(trabalho_realizado, 3)
     print("O trabalho que o robô vai realizar: %.3f\n" % trabalho_realizado)
 
-    #Inputs para a posição do robô em X e Y
+    # Criar gráficos dessa parte para baixo
+    # Gráfico 1
+    # Gráfico 2
+    # Gráfico 3
+    # Gráfico 4
+    # Gráfico 5
 
-    #Teste
+    result_label.configure(text="Distância que o robô terá que percorrer: %.3f" % distancia_robo_e_bola)
 
-    # Exibir os resultados na GUI
-    resultado_label.config(text="Resultado: %.3f" % resultado)
+root = Tk()
+root.title("Cálculo de Distância do Robô")
 
-# Cria a janela principal
-window = Tk()
-window.title("Calculadora do Robô")
+frame = Frame(root)
+frame.pack(pady=20)
 
-# Cria os campos de entrada
-robo_x_label = Label(window, text="Posição do robô em X:")
-robo_x_label.pack()
-robo_x_entry = Entry(window)
-robo_x_entry.pack()
+label_x = Label(frame, text="Posição do robô em X:")
+label_x.grid(row=0, column=0)
+entry_x = Entry(frame)
+entry_x.grid(row=0, column=1)
 
-robo_y_label = Label(window, text="Posição do robô em Y:")
-robo_y_label.pack()
-robo_y_entry = Entry(window)
-robo_y_entry.pack()
+label_y = Label(frame, text="Posição do robô em Y:")
+label_y.grid(row=1, column=0)
+entry_y = Entry(frame)
+entry_y.grid(row=1, column=1)
 
-# Cria o botão de cálculo
-calcular_button = Button(window, text="Calcular", command=calcular)
-calcular_button.pack()
+calculate_button = Button(root, text="Calcular", command=calcular)
+calculate_button.pack(pady=10)
 
-# Cria a label para exibir o resultado
-resultado_label = Label(window, text="Resultado:")
-resultado_label.pack()
+result_label = Label(root, text="")
+result_label.pack()
 
-# Inicia o loop da GUI
-window.mainloop()
+root.mainloop()
