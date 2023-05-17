@@ -1,5 +1,5 @@
 from math import sqrt
-import tkinter as tk
+from tkinter import *
 
 def calcular():
     #Inputs para a posição do robô em X e Y
@@ -190,26 +190,26 @@ def calcular():
     resultado_label.config(text="Resultado: %.3f" % resultado)
 
 # Cria a janela principal
-window = tk.Tk()
+window = Tk()
 window.title("Calculadora do Robô")
 
 # Cria os campos de entrada
-robo_x_label = tk.Label(window, text="Posição do robô em X:")
+robo_x_label = Label(window, text="Posição do robô em X:")
 robo_x_label.pack()
-robo_x_entry = tk.Entry(window)
+robo_x_entry = Entry(window)
 robo_x_entry.pack()
 
-robo_y_label = tk.Label(window, text="Posição do robô em Y:")
+robo_y_label = Label(window, text="Posição do robô em Y:")
 robo_y_label.pack()
-robo_y_entry = tk.Entry(window)
+robo_y_entry = Entry(window)
 robo_y_entry.pack()
 
 # Cria o botão de cálculo
-calcular_button = tk.Button(window, text="Calcular", command=calcular)
+calcular_button = Button(window, text="Calcular", command=calcular)
 calcular_button.pack()
 
 # Cria a label para exibir o resultado
-resultado_label = tk.Label(window, text="Resultado:")
+resultado_label = Label(window, text="Resultado:")
 resultado_label.pack()
 
 # Inicia o loop da GUI
